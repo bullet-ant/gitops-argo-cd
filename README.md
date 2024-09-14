@@ -1,5 +1,9 @@
 # 🚀 GitOps with ArgoCD: Hands-on Guide
 
+<p align="center">
+  <img src="https://openkruise.io/assets/images/argocd-9b2263b3527910a6a839509239e3ebbf.jpeg" width="480"/>
+</p>
+
 Welcome to my GitOps playground! This repository is an experiment where I'm learning and testing out GitOps principles using **ArgoCD** to automate Kubernetes deployments. The key idea behind GitOps is to manage infrastructure and application configuration using **Git** as the source of truth.
 
 This repo demonstrates how developers push code, while ArgoCD pulls and syncs changes to Kubernetes.
