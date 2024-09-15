@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: gitops-app
   namespace: default
 spec:
   selector:
-    app: nginx
+    app: gitops-app
   type: ClusterIP
   ports:
     - name: web
@@ -17,23 +17,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: gitops-app
   namespace: default
   labels:
-    app: nginx
+    app: gitops-app
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: gitops-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: nginx
+        app: gitops-app
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.27.1
+        - name: gitops-app
+          image: aman21xo/gitops-app:1.0.2
           resources:
             requests:
               cpu: 100m
@@ -43,5 +43,5 @@ spec:
               memory: 512Mi
           ports:
             - containerPort: 80
-              name: nginx
+              name: gitops-app
       restartPolicy: Always
