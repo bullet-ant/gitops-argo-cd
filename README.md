@@ -42,4 +42,4 @@ Once ArgoCD pulls the new changes, it applies them to your Kubernetes cluster. T
 
 - **ArgoCD**: Set up ArgoCD in your Kubernetes cluster. (Check the official [ArgoCD documentation](https://argo-cd.readthedocs.io/en/stable/) for setup instructions).
 - **Git Repository**: This repo contains Kubernetes manifests/Helm charts that will be automatically deployed by ArgoCD.
-- **Kubernetes Cluster**: Have a running Kubernetes cluster that ArgoCD can manage.
+- **Kubernetes Cluster**: Have a running Kubernetes cluster that ArgoCD can manage. I use [kind](https://kind.sigs.k8s.io/) btw!
