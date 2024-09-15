@@ -33,14 +33,14 @@ jobs:
       - name: Extract version from package.json
         id: get_version
         run: |
-          VERSION=$(cat package.json | jq -r .version)
+          VERSION=$(cat app/package.json | jq -r .version)
           echo "VERSION=$VERSION"
           echo "::set-output name=version::$VERSION"
 
       # Step 6: Build Docker image with version tag
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USER }}/gitops-app:${{ steps.get_version.outputs.version }} .
+          docker build -t ${{ secrets.DOCKER_USER }}/gitops-app:${{ steps.get_version.outputs.version }} app/.
 
       # Step 7: Push Docker image to Docker Hub
       - name: Push Docker image
