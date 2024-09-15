@@ -17,8 +17,6 @@ jobs:
       # Step 1: Checkout the latest code from the repo
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       # Step 2: Install jq to parse package.json
       - name: Install jq
@@ -53,12 +51,17 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USER }}/gitops-app:${{ steps.get_version.outputs.version }}
 
-      # Step 8: Create a pull request from app to main if build succeeds
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Reset app branch
+        run: |
+          git fetch origin app
+          git reset --hard origin/app
+
       - name: Create Pull Request
-        if: success()
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Merge 'app' into 'main'"
           branch: main-with-app
-          title: "Automated PR: Merge 'app' into 'main'"
