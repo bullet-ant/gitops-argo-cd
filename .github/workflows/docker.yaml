@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build:
@@ -16,8 +17,6 @@ jobs:
       # Step 1: Checkout the latest code from the repo
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       # Step 2: Install jq to parse package.json
       - name: Install jq
@@ -55,7 +54,7 @@ jobs:
       # Step 8: Create a pull request from app to main if build succeeds
       - name: Create Pull Request
         if: success()
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Merge 'app' into 'main'"
