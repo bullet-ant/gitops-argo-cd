@@ -1,0 +1,30 @@
+<script>
+  import "./app.css";
+</script>
+
+<main>
+  <img
+    src="https://i.pinimg.com/736x/df/cf/3f/dfcf3f48ab61f0ed8857676a441859dc--doge-meme-doge-dog.jpg"
+    alt="Doge"
+    srcset=""
+  />
+  <h1>v1</h1>
+</main>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 1em;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+</style>
