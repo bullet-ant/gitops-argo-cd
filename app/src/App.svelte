@@ -1,14 +1,13 @@
 <script>
   import "./app.css";
+
+  let src =
+    "https://i.pinimg.com/736x/df/cf/3f/dfcf3f48ab61f0ed8857676a441859dc--doge-meme-doge-dog.jpg";
 </script>
 
 <main>
-  <img
-    src="https://i.pinimg.com/736x/df/cf/3f/dfcf3f48ab61f0ed8857676a441859dc--doge-meme-doge-dog.jpg"
-    alt="Doge"
-    srcset=""
-  />
-  <h1>v1</h1>
+  <img {src} alt="a meme" />
+  <h1>v1.0.0</h1>
 </main>
 
 <style>
