@@ -6,7 +6,7 @@
 </script>
 
 <main>
-  <img {src} alt="a meme" />
+  <img {src} alt="a legendary meme" />
   <h1>v1.0.0</h1>
 </main>
 
