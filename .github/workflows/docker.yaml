@@ -17,8 +17,6 @@ jobs:
       # Step 1: Checkout the 'app' branch code
       - name: Checkout app branch code
         uses: actions/checkout@v4
-        with:
-          ref: app
 
       # Step 2: Install jq to parse package.json
       - name: Install jq
@@ -79,7 +77,13 @@ jobs:
             echo "VERSION_CHANGED=false" >> $GITHUB_ENV
           fi
 
-      # Step 11: Create a Pull Request only if the version changed and Docker image was built successfully
+      # Step 11: Reset 'app' branch to the latest code
+      - name: Reset app branch
+        run: |
+          git fetch origin app
+          git reset --hard origin/app
+
+      # Step 12: Create a Pull Request only if the version changed and Docker image was built successfully
       - name: Create Pull Request
         if: success() && env.VERSION_CHANGED == 'true'
         uses: peter-evans/create-pull-request@v7
