@@ -89,5 +89,5 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: merge-app-${{ env.APP_VERSION }}
-          title: "Automated PR: Merge 'app' into 'main' (Version ${{ env.APP_VERSION }})"
-          labels: image-built
+          title: "Automated PR: Merge 'app' (v${{ env.APP_VERSION }}) into 'main'"
+          labels: automated, release
