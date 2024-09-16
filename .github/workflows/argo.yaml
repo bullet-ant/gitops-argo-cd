@@ -1,0 +1,46 @@
+name: Update image tag
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the 'main' branch code
+      - name: Checkout main branch code
+        uses: actions/checkout@v4
+
+      # Step 2: Install jq to parse package.json
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      # Step 3: Get version from 'main' branch
+      - name: Get version from main branch
+        id: app_version
+        run: |
+          APP_VERSION=$(cat app/package.json | jq -r .version)
+          echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+          echo "App version on 'main': $APP_VERSION"
+
+      # Step 4: Update the image tag in the Argo CD application manifest
+      - name: Update image tag in Argo CD application manifest
+        run: |
+          sed -i "s/gitops-app:.*/gitops-app:$APP_VERSION/g" argo-cd/deployment.yaml
+          cat argo-cd/deployment.yaml
+
+      # Step 5: Create a Pull Request with the updated image tag
+      - name: Create Pull Request
+        if: success()
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: update-tag-${{ env.APP_VERSION }}
+          title: "Automated PR: Update image tag to ${{ env.APP_VERSION }}"
+          labels: automated, update-image
