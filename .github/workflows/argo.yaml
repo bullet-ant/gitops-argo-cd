@@ -42,5 +42,6 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: update-tag-${{ env.APP_VERSION }}
-          title: "Automated PR: Update image tag to ${{ env.APP_VERSION }}"
+          title: "Automated PR: Update image tag to v${{ env.APP_VERSION }}"
+          commit-message: "Update image tag to v${{ env.APP_VERSION }}"
           labels: automated, update-image

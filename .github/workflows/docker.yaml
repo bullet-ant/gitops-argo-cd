@@ -70,10 +70,10 @@ jobs:
         id: version_check
         run: |
           if [ "$APP_VERSION" != "$MAIN_VERSION" ]; then
-            echo "Version changed: Creating PR."
+            echo "Version changed [v$MAIN_VERSION -> v$APP_VERSION]: Creating PR."
             echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else
-            echo "No version change: Skipping PR."
+            echo "No version change [v$APP_VERSION]: Skipping PR."
             echo "VERSION_CHANGED=false" >> $GITHUB_ENV
           fi
 
