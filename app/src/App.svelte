@@ -3,7 +3,7 @@
   import pkg from "../package.json";
 
   let src =
-    "https://i.pinimg.com/736x/df/cf/3f/dfcf3f48ab61f0ed8857676a441859dc--doge-meme-doge-dog.jpg";
+    "https://media.tenor.com/MnCp90aKFAkAAAAM/white-cat-eating-salad.gif";
 </script>
 
 <main>
